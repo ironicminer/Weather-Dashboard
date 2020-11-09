@@ -24,7 +24,7 @@ function getCurrentWeather(location) {
 
     const card = $("<div>").addClass("card");
     const cardBody = $("<div>").addClass("card-body");
-    const city = $("<h3>").addClass("card-title").text(response.name);
+    const city = $("<h3>").addClass("card-title1").text(response.name);
     const temperature = $("<p>")
       .addClass("card-text temp")
       .text("Temp: " + temp + "F");
@@ -40,10 +40,12 @@ function getCurrentWeather(location) {
     cardBody.append(city, temperature, wind, humidity);
     card.append(cardBody);
     $(".output-weather").append(card);
+
     let liItem = $("<li>").text(response.name);
-    $(".card-body3").append(liItem);
+    $("#output-card").append(liItem);
   });
 }
+
 //forecast function
 function getForecast(location) {
   let forecastURL =
@@ -99,4 +101,10 @@ $("#search-btn").click(function () {
   getForecast(cityInput);
 
   $(".input").val("");
+});
+$(".card-body3").on("click", "li", function () {
+  //$(".card-body3").empty();
+  city = $(this).text();
+  getForecast(city);
+  getCurrentWeather();
 });
