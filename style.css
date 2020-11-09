@@ -1,0 +1,47 @@
+.show {
+  display: block;
+}
+.card-body {
+  width: 0.5fr;
+  float: left;
+  display: block;
+}
+.card-body3 {
+  list-style-type: none;
+}
+.navbar {
+  background-color: rgb(50, 78, 206);
+  background: transparent 0.5;
+  text-align: center;
+  position: relative;
+  padding: 20px;
+}
+#nav-title {
+  font-size: xx-large;
+}
+.card.col-md-2.ml-4.bg-primary.text-white {
+  display: flex;
+  float: left;
+}
+.container {
+  width: 0.05fr;
+  padding-top: 20px;
+}
+.card-body2 {
+  width: 0.5fr;
+  font-family: ;
+  display: block;
+}
+.btn {
+  border-color: black;
+  background-color: rgb(92, 92, 238);
+  color: rgb(246, 246, 250);
+  border-radius: 8px;
+}
+.header {
+  font-size: xx-large;
+  text-align: center;
+}
+.input {
+  border-radius: 4px;
+}
