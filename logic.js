@@ -94,6 +94,47 @@ function getForecast(location) {
     }
   });
 }
+function updateWeather(location) {
+  let currentURL =
+    "https://api.openweathermap.org/data/2.5/weather?q=" +
+    location +
+    "&appid=" +
+    apiKey;
+  $.ajax({
+    url: currentURL,
+    method: "GET",
+  }).then(function (response) {
+    console.log(response);
+
+    //convert temp to F
+    let temp = (response.main.temp - 273.15) * 1.8 + 32;
+    temp = Math.floor(temp);
+    //empty div for new weather
+    $(".output-weather").empty();
+
+    const card = $("<div>").addClass("card");
+    const cardBody = $("<div>").addClass("card-body");
+    const city = $("<h3>").addClass("card-title1").text(response.name);
+    const temperature = $("<p>")
+      .addClass("card-text temp")
+      .text("Temp: " + temp + "F");
+    const image = $("<img>").attr(
+      "src",
+      "https://openweathermap.org/img/w/" + response.weather[0].icon + ".png"
+    );
+    const humidity = $("<p>").text(
+      "Humididty: " + response.main.humidity + "%"
+    );
+    const wind = $("<p>").text("Wind: " + response.wind.speed + "MPH");
+    city.append(image);
+    cardBody.append(city, temperature, wind, humidity);
+    card.append(cardBody);
+    $(".output-weather").append(card);
+
+    /* let liItem = $("<li>").text(response.name);
+      $("#output-card").append(liItem); */
+  });
+}
 //search button click function
 $("#search-btn").click(function () {
   let cityInput = $(".input").val().trim();
@@ -104,7 +145,7 @@ $("#search-btn").click(function () {
 });
 $(".card-body3").on("click", "li", function () {
   //$(".card-body3").empty();
-  city = $(this).text();
+  city = $(this).val().trim();
   getForecast(city);
-  getCurrentWeather();
+  updateWeather(city);
 });
