@@ -145,7 +145,7 @@ $("#search-btn").click(function () {
 });
 $(".card-body3").on("click", "li", function () {
   //$(".card-body3").empty();
-  city = $(this).val();
+  city = $(this).text();
   getForecast(city);
   updateWeather(city);
 });
